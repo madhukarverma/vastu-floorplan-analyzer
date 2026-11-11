@@ -1,0 +1,91 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "vastu-floorplan-analyzer"
+version = "1.0.0"
+description = "Deterministic (no AI/ML) Vastu Shastra and building-physics assessment of house floor plans."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "vastu-floorplan-analyzer contributors" }]
+keywords = ["vastu", "floor-plan", "computational-geometry", "solar-geometry", "architecture", "building-physics"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Education",
+  "Intended Audience :: Science/Research",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Scientific/Engineering :: Physics",
+  "Typing :: Typed",
+]
+dependencies = []
+
+[project.optional-dependencies]
+plot = ["matplotlib>=3.7"]
+paper = ["matplotlib>=3.7", "reportlab>=4.0"]
+dev = [
+  "matplotlib>=3.7",
+  "pytest>=8.0",
+  "pytest-cov>=5.0",
+  "ruff>=0.6",
+  "mypy>=1.10",
+  "pre-commit>=3.7",
+]
+
+[project.scripts]
+vastu = "vastu_analyzer.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/madhukarverma/vastu-floorplan-analyzer"
+Documentation = "https://github.com/madhukarverma/vastu-floorplan-analyzer/tree/main/docs"
+Issues = "https://github.com/madhukarverma/vastu-floorplan-analyzer/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/vastu_analyzer"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src", "tests", "examples", "docs/*.md", "README.md", "LICENSE", "CHANGELOG.md"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF", "N", "C4", "PT"]
+ignore = ["E501", "RUF001", "RUF002", "RUF003", "N806"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["PT011"]
+"paper/*" = ["E402", "N802"]  # P/H1/H2 form a small typesetting DSL
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+warn_unreachable = true
+files = ["src/vastu_analyzer"]
+
+[[tool.mypy.overrides]]
+module = ["matplotlib.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+
+[tool.coverage.run]
+source = ["vastu_analyzer"]
+branch = true
+omit = ["*/digitize.py", "*/__main__.py"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+fail_under = 85
