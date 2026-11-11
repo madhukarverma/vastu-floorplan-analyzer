@@ -1,0 +1,167 @@
+{
+  "version": "1.0.0",
+  "description": "Encoded Vastu Shastra placement heuristics (consensus of practitioner sources; see docs/procedure.md). Each zone value is one of the named levels. Unlisted zones take default_level.",
+  "levels": {"ideal": 1.0, "good": 0.75, "acceptable": 0.5, "poor": 0.25, "avoid": 0.0},
+  "default_level": "poor",
+  "aliases": {
+    "puja": "pooja", "prayer": "pooja", "mandir": "pooja", "temple": "pooja", "worship": "pooja",
+    "master": "master_bedroom", "master_bed": "master_bedroom", "mbr": "master_bedroom",
+    "bed": "bedroom", "kids_bedroom": "bedroom", "children_bedroom": "bedroom", "guest_bedroom": "bedroom", "guest": "bedroom",
+    "hall": "living", "drawing": "living", "lounge": "living", "living_room": "living", "family": "living",
+    "bath": "toilet", "bathroom": "toilet", "wc": "toilet", "washroom": "toilet", "restroom": "toilet", "lavatory": "toilet",
+    "stairs": "staircase", "stair": "staircase",
+    "storage": "store", "storeroom": "store",
+    "office": "study", "library": "study",
+    "parking": "garage", "car_park": "garage", "carport": "garage",
+    "corridor": "circulation", "passage": "circulation", "lobby": "circulation", "foyer": "circulation", "hallway": "circulation",
+    "courtyard": "open_space", "open": "open_space", "garden": "open_space", "lawn": "open_space", "balcony": "open_space", "verandah": "open_space", "terrace": "open_space",
+    "laundry": "utility", "wash": "utility",
+    "sump": "water_tank", "borewell": "water_tank", "underground_tank": "water_tank",
+    "septic": "septic_tank"
+  },
+  "room_types": {
+    "pooja": {
+      "label": "Pooja (prayer) room", "weight": 8, "heaviness": 0.1, "movable": true,
+      "zones": {"NE": "ideal", "E": "good", "N": "good", "C": "acceptable", "W": "acceptable", "NW": "poor", "SE": "avoid", "S": "avoid", "SW": "avoid"},
+      "traditional": "Ishanya (NE) is the seat of Ishana; worship facing east or north is prescribed.",
+      "physics": "An east/north-east room receives the low-angle morning sun (daylight with modest heat) and stays cool in the afternoon.",
+      "remedy": "If relocation is impossible, place the altar on the NE wall of the room so the worshipper faces east or north; keep the room light-coloured and uncluttered."
+    },
+    "kitchen": {
+      "label": "Kitchen", "weight": 10, "heaviness": 0.5, "movable": true,
+      "zones": {"SE": "ideal", "NW": "good", "E": "acceptable", "S": "acceptable", "W": "poor", "N": "avoid", "NE": "avoid", "SW": "avoid", "C": "avoid"},
+      "traditional": "Agneya (SE) is ruled by Agni, the fire element; NW (Vayu) is the accepted alternative.",
+      "physics": "An east-facing kitchen gets morning daylight during breakfast preparation and avoids coinciding afternoon solar and cooking heat loads.",
+      "remedy": "Place the cooking range in the SE corner of the kitchen so the cook faces east; keep the sink (water) away from the stove; ensure an exhaust on an outside wall."
+    },
+    "master_bedroom": {
+      "label": "Master bedroom", "weight": 9, "heaviness": 0.8, "movable": true,
+      "zones": {"SW": "ideal", "S": "good", "W": "good", "NW": "poor", "N": "poor", "E": "poor", "SE": "avoid", "NE": "avoid", "C": "avoid"},
+      "traditional": "Nairutya (SW) is the heaviest, most stable quarter, assigned to the head of the household.",
+      "physics": "SW/W rooms carry the peak afternoon sol-air load; high thermal-mass walls in this quarter delay that heat (time lag) and protect the rest of the house.",
+      "remedy": "Keep the bed in the SW part of the room with the head to the south or west; use heavy furniture/wardrobes on the SW walls."
+    },
+    "bedroom": {
+      "label": "Bedroom", "weight": 6, "heaviness": 0.6, "movable": true,
+      "zones": {"W": "ideal", "NW": "ideal", "S": "good", "SW": "good", "E": "acceptable", "N": "acceptable", "NE": "poor", "SE": "poor", "C": "avoid"},
+      "traditional": "Children's and guest rooms are assigned to the west (Varuna) and north-west (Vayu).",
+      "physics": "West/north-west rooms receive diffuse daylight in the morning; shading the west facade controls the afternoon peak.",
+      "remedy": "Place the bed so the sleeper's head points south or east; avoid mirrors facing the bed."
+    },
+    "living": {
+      "label": "Living room", "weight": 6, "heaviness": 0.3, "movable": true,
+      "zones": {"N": "ideal", "E": "ideal", "NE": "ideal", "NW": "good", "W": "acceptable", "C": "acceptable", "SE": "poor", "S": "poor", "SW": "poor"},
+      "traditional": "Reception spaces belong to the light, open north and east (Kubera, Indra).",
+      "physics": "North light is the most uniform daylight; east openings admit morning sun and allow evening cooling.",
+      "remedy": "Arrange seating so that the host faces east or north; keep heavy furniture on the S and W walls."
+    },
+    "dining": {
+      "label": "Dining", "weight": 4, "heaviness": 0.4, "movable": true,
+      "zones": {"W": "ideal", "E": "good", "S": "acceptable", "N": "acceptable", "C": "acceptable", "NW": "acceptable", "SE": "acceptable", "NE": "poor", "SW": "poor"},
+      "traditional": "Dining is placed in the west, adjacent to the kitchen.",
+      "physics": "Neutral; the main requirement is adjacency to the kitchen.",
+      "remedy": "Keep the dining area adjacent to the kitchen; diners should face east or north."
+    },
+    "toilet": {
+      "label": "Toilet / bathroom", "weight": 9, "heaviness": 0.5, "movable": true,
+      "zones": {"NW": "ideal", "W": "good", "S": "acceptable", "SE": "poor", "E": "poor", "N": "poor", "NE": "avoid", "SW": "avoid", "C": "avoid"},
+      "traditional": "Wet, impure functions go to the west/north-west; the NE (sacred) and SW (stable) corners and the centre must be kept free of them.",
+      "physics": "A toilet needs an exterior wall for cross-ventilation and drying; the NW receives the afternoon sun, which helps dry wet surfaces.",
+      "remedy": "Keep the toilet dry and well ventilated with an exhaust fan; keep the door closed; place the WC so the user faces north or south."
+    },
+    "staircase": {
+      "label": "Staircase", "weight": 6, "heaviness": 1.0, "movable": false,
+      "zones": {"SW": "ideal", "S": "ideal", "W": "ideal", "SE": "acceptable", "NW": "acceptable", "N": "poor", "E": "poor", "NE": "avoid", "C": "avoid"},
+      "traditional": "The staircase is a heavy element and belongs to the south/west, rising clockwise.",
+      "physics": "A staircase block on the south/west acts as a thermal buffer against the afternoon sun.",
+      "remedy": "If the staircase cannot move, make sure it rises clockwise and keep the space under it as storage, not a toilet or pooja."
+    },
+    "study": {
+      "label": "Study", "weight": 4, "heaviness": 0.4, "movable": true,
+      "zones": {"NE": "ideal", "E": "ideal", "N": "ideal", "W": "good", "NW": "acceptable", "C": "poor", "SE": "poor", "S": "poor", "SW": "acceptable"},
+      "traditional": "Study faces east or north (sources of knowledge and wealth).",
+      "physics": "North/east windows give glare-free daylight for desk work.",
+      "remedy": "Place the desk so the user faces east or north."
+    },
+    "store": {
+      "label": "Store room", "weight": 3, "heaviness": 0.9, "movable": true,
+      "zones": {"SW": "ideal", "W": "good", "S": "good", "NW": "good", "SE": "acceptable", "N": "poor", "E": "poor", "NE": "avoid", "C": "poor"},
+      "traditional": "Heavy storage strengthens the SW.",
+      "physics": "Unoccupied, high-mass storage on the hot facades buffers occupied rooms.",
+      "remedy": "Keep heavy items on the SW side of the store."
+    },
+    "garage": {
+      "label": "Garage / parking", "weight": 3, "heaviness": 0.6, "movable": false,
+      "zones": {"NW": "ideal", "SE": "ideal", "N": "acceptable", "E": "acceptable", "W": "acceptable", "S": "acceptable", "NE": "avoid", "SW": "poor", "C": "avoid"},
+      "traditional": "Vehicles (movement, Vayu) go to the NW; SE is also accepted.",
+      "physics": "An unconditioned garage on a hot facade acts as a buffer zone.",
+      "remedy": "Keep the NE free of vehicles; park facing north or east."
+    },
+    "open_space": {
+      "label": "Open space / balcony / courtyard", "weight": 4, "heaviness": 0.0, "movable": false,
+      "zones": {"NE": "ideal", "N": "ideal", "E": "ideal", "C": "good", "NW": "acceptable", "SE": "acceptable", "W": "poor", "S": "poor", "SW": "avoid"},
+      "traditional": "Openness, water and low ground belong to the NE; the SW should be closed and high.",
+      "physics": "Open space to the N/E admits daylight and morning sun while a closed S/W screens the hottest afternoon radiation.",
+      "remedy": "Keep the NE open and clutter-free; plant tall trees on the S and W instead."
+    },
+    "utility": {
+      "label": "Utility / laundry", "weight": 3, "heaviness": 0.4, "movable": true,
+      "zones": {"NW": "ideal", "SE": "good", "W": "good", "S": "acceptable", "N": "poor", "E": "poor", "NE": "avoid", "SW": "poor", "C": "avoid"},
+      "traditional": "Washing (air and movement) belongs to the NW.",
+      "physics": "Afternoon sun on the NW dries laundry quickly.",
+      "remedy": "Keep drains flowing towards the north or east."
+    },
+    "water_tank": {
+      "label": "Underground water tank / borewell", "weight": 5, "heaviness": 0.0, "movable": true,
+      "zones": {"NE": "ideal", "N": "good", "E": "good", "NW": "poor", "W": "poor", "SE": "avoid", "S": "avoid", "SW": "avoid", "C": "avoid"},
+      "traditional": "Underground water belongs to the NE (lowest point of the site).",
+      "physics": "A shaded, low NE location keeps stored water cooler.",
+      "remedy": "Keep the area around the tank clean and covered."
+    },
+    "septic_tank": {
+      "label": "Septic tank", "weight": 5, "heaviness": 0.5, "movable": true,
+      "zones": {"NW": "ideal", "W": "good", "S": "acceptable", "N": "poor", "E": "poor", "SE": "poor", "NE": "avoid", "SW": "avoid", "C": "avoid"},
+      "traditional": "Waste belongs to the NW, never the NE (sacred) or SW (stable).",
+      "physics": "Keep wastewater downwind and away from the potable water source.",
+      "remedy": "Keep a minimum separation from any water tank or borewell."
+    },
+    "circulation": {
+      "label": "Circulation", "weight": 1, "heaviness": 0.2, "movable": false,
+      "zones": {"C": "ideal", "N": "good", "E": "good", "NE": "good", "S": "acceptable", "W": "acceptable", "NW": "acceptable", "SE": "acceptable", "SW": "acceptable"},
+      "traditional": "Passages keep the Brahmasthana open.",
+      "physics": "A central circulation core enables stack ventilation.",
+      "remedy": "Keep passages clear."
+    },
+    "other": {
+      "label": "Other", "weight": 0, "heaviness": 0.4, "movable": false,
+      "zones": {},
+      "traditional": "No rule encoded.",
+      "physics": "",
+      "remedy": ""
+    }
+  },
+  "entrance": {
+    "weight": 10,
+    "secondary_weight": 3,
+    "sectors": {
+      "N": "ideal", "NNE": "ideal", "NE": "ideal", "ENE": "good",
+      "E": "ideal", "ESE": "acceptable", "SE": "poor", "SSE": "acceptable",
+      "S": "poor", "SSW": "avoid", "SW": "avoid", "WSW": "poor",
+      "W": "acceptable", "WNW": "acceptable", "NW": "acceptable", "NNW": "good"
+    },
+    "traditional": "Entrances in the north, north-east and east admit the auspicious morning energy; the SSW-SW-WSW padas are considered inauspicious.",
+    "physics": "N/E doors open to the cooler, shaded side of the house in the afternoon; a S/W door admits hot afternoon air and glare.",
+    "remedy": "If the door cannot be moved, shift it within the facade towards the auspicious end (towards E on a south facade, towards N on a west facade); keep it well-lit."
+  },
+  "site": {
+    "brahmasthana_weight": 8,
+    "brahmasthana_forbidden": ["toilet", "kitchen", "staircase", "store", "septic_tank", "water_tank"],
+    "corner_weights": {"NE": 8, "SW": 6, "SE": 3, "NW": 3},
+    "corner_tolerance": 0.95,
+    "shape_weight": 5,
+    "max_aspect_ratio": 2.0,
+    "dipole_weight": 6,
+    "dipole_ideal_bearing": 225.0,
+    "dipole_saturation": 0.10
+  }
+}
