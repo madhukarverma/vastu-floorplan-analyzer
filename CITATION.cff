@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "vastu-floorplan-analyzer: a deterministic geometric-physical framework for Vastu Shastra assessment of floor plans"
+type: software
+authors:
+  - name: "vastu-floorplan-analyzer contributors"
+version: 1.0.0
+date-released: 2026-11-12
+license: MIT
+repository-code: "https://github.com/madhukarverma/vastu-floorplan-analyzer"
+keywords:
+  - vastu shastra
+  - floor plan
+  - computational geometry
+  - solar geometry
+  - sol-air temperature
+  - building physics
