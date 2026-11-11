@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "name": "Sample 3BHK, New Delhi (as built)",
+  "units": "m",
+  "north": {"angle_deg": 8.0, "reference": "true", "declination_deg": 0.0},
+  "location": {"latitude": 28.6139, "longitude": 77.2090, "timezone": 5.5},
+  "footprint": [[0, 0], [12, 0], [12, 15], [0, 15]],
+  "rooms": [
+    {"name": "Living Room", "type": "living", "polygon": [[0, 10], [6, 10], [6, 15], [0, 15]]},
+    {"name": "Kitchen", "type": "kitchen", "polygon": [[6, 10], [10, 10], [10, 15], [6, 15]]},
+    {"name": "Toilet 1", "type": "toilet", "polygon": [[10, 12], [12, 12], [12, 15], [10, 15]]},
+    {"name": "Utility", "type": "utility", "polygon": [[10, 10], [12, 10], [12, 12], [10, 12]]},
+    {"name": "Bedroom 2", "type": "bedroom", "polygon": [[0, 5], [4, 5], [4, 10], [0, 10]]},
+    {"name": "Dining", "type": "dining", "polygon": [[4, 5], [8, 5], [8, 10], [4, 10]]},
+    {"name": "Staircase", "type": "staircase", "polygon": [[8, 7], [12, 7], [12, 10], [8, 10]]},
+    {"name": "Pooja", "type": "pooja", "polygon": [[8, 5], [10, 5], [10, 7], [8, 7]]},
+    {"name": "Store", "type": "store", "polygon": [[10, 5], [12, 5], [12, 7], [10, 7]]},
+    {"name": "Master Bedroom", "type": "master_bedroom", "polygon": [[0, 0], [5, 0], [5, 5], [0, 5]]},
+    {"name": "Toilet 2", "type": "toilet", "polygon": [[5, 0], [7, 0], [7, 2.5], [5, 2.5]]},
+    {"name": "Foyer", "type": "foyer", "polygon": [[5, 2.5], [7, 2.5], [7, 0], [8, 0], [8, 5], [5, 5]]},
+    {"name": "Bedroom 3", "type": "bedroom", "polygon": [[8, 0], [12, 0], [12, 5], [8, 5]]}
+  ],
+  "entrances": [
+    {"name": "Main door", "position": [7.5, 0], "main": true}
+  ],
+  "metadata": {"source": "Synthetic case study for the reference paper", "storeys": 1}
+}

@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "name": "Reference Vastu-compliant 3BHK",
+  "units": "m",
+  "north": {"angle_deg": 0.0, "reference": "true"},
+  "location": {"latitude": 28.6139, "longitude": 77.2090, "timezone": 5.5},
+  "footprint": [[0, 0], [12, 0], [12, 15], [0, 15]],
+  "rooms": [
+    {"name": "Living Room", "type": "living", "polygon": [[0, 10], [8, 10], [8, 15], [0, 15]]},
+    {"name": "Pooja", "type": "pooja", "polygon": [[8, 12], [10, 12], [10, 15], [8, 15]]},
+    {"name": "Study", "type": "study", "polygon": [[8, 10], [10, 10], [10, 12], [8, 12]]},
+    {"name": "Verandah", "type": "verandah", "polygon": [[10, 10], [12, 10], [12, 15], [10, 15]]},
+    {"name": "Bedroom 2", "type": "bedroom", "polygon": [[0, 5], [4, 5], [4, 10], [0, 10]]},
+    {"name": "Central Hall", "type": "circulation", "polygon": [[4, 5], [8, 5], [8, 10], [4, 10]]},
+    {"name": "Dining", "type": "dining", "polygon": [[8, 5], [12, 5], [12, 10], [8, 10]]},
+    {"name": "Master Bedroom", "type": "master_bedroom", "polygon": [[0, 0], [4, 0], [4, 5], [0, 5]]},
+    {"name": "Staircase", "type": "staircase", "polygon": [[4, 0], [6, 0], [6, 5], [4, 5]]},
+    {"name": "Toilet", "type": "toilet", "polygon": [[6, 0], [8, 0], [8, 2.5], [6, 2.5]]},
+    {"name": "Store", "type": "store", "polygon": [[6, 2.5], [8, 2.5], [8, 5], [6, 5]]},
+    {"name": "Kitchen", "type": "kitchen", "polygon": [[8, 0], [12, 0], [12, 5], [8, 5]]}
+  ],
+  "entrances": [
+    {"name": "Main door", "position": [9, 15], "main": true}
+  ]
+}
