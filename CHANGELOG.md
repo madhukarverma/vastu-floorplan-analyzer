@@ -4,6 +4,22 @@ All notable changes to this project are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2026-11-18
+
+### Added
+
+- Full-screen mode (F11 or the *Full screen* button, Esc to leave). The drawing and its labels
+  now grow with the window.
+- Big score banner coloured by grade, a colour legend, and a colour-coded report card
+  (steps, good / okay / bad points, swaps, sun tips).
+- 7 sample houses from worst to best (Poor to Excellent; different sizes and north
+  directions), selectable from a *Sample houses* list in the app.
+
+### Changed
+
+- Room swaps now need similar sizes (at most 1.5× instead of 2×), which avoids odd
+  suggestions like turning a small toilet into a large living room.
+
 ## [2.0.0] - 2026-11-18
 
 Simplified classroom version. The detailed research engine stays available at tag `v1.0.0`.

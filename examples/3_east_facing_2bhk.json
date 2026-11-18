@@ -1,0 +1,14 @@
+{
+  "name": "East-facing 2BHK flat (north points right)",
+  "width": 10, "depth": 12, "north": "right",
+  "rooms": [
+    {"name": "Master Bedroom", "type": "master_bedroom", "x": 0, "y": 0, "w": 4, "h": 4},
+    {"name": "Bedroom 2",      "type": "bedroom",        "x": 4, "y": 0, "w": 6, "h": 4},
+    {"name": "Pooja",          "type": "pooja",          "x": 0, "y": 4, "w": 3, "h": 4},
+    {"name": "Living Room",    "type": "living",         "x": 3, "y": 4, "w": 7, "h": 4},
+    {"name": "Kitchen",        "type": "kitchen",        "x": 0, "y": 8, "w": 4, "h": 4},
+    {"name": "Dining",         "type": "dining",         "x": 4, "y": 8, "w": 3, "h": 4},
+    {"name": "Toilet",         "type": "toilet",         "x": 7, "y": 8, "w": 3, "h": 4}
+  ],
+  "door": {"x": 5.5, "y": 12}
+}

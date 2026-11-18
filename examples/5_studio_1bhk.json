@@ -1,0 +1,14 @@
+{
+  "name": "Compact 1BHK studio",
+  "width": 9, "depth": 9, "north": "up",
+  "rooms": [
+    {"name": "Living Room", "type": "living",         "x": 0, "y": 0, "w": 6, "h": 3},
+    {"name": "Balcony",     "type": "balcony",        "x": 6, "y": 0, "w": 3, "h": 3},
+    {"name": "Bedroom",     "type": "master_bedroom", "x": 0, "y": 3, "w": 3, "h": 6},
+    {"name": "Passage",     "type": "corridor",       "x": 3, "y": 3, "w": 3, "h": 3},
+    {"name": "Toilet",      "type": "toilet",         "x": 6, "y": 3, "w": 3, "h": 3},
+    {"name": "Dining",      "type": "dining",         "x": 3, "y": 6, "w": 3, "h": 3},
+    {"name": "Kitchen",     "type": "kitchen",        "x": 6, "y": 6, "w": 3, "h": 3}
+  ],
+  "door": {"x": 4.5, "y": 0}
+}

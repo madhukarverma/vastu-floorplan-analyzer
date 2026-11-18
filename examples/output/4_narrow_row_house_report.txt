@@ -1,0 +1,51 @@
+VASTU REPORT CARD - Narrow row house (north points down)
+============================================================
+House size: 6 m x 18 m, north points down on the drawing
+
+STEP 5 - Which box is each room in?
+  Kitchen          (kitchen) -> mostly South-east  [SE 67%, S 33%]
+  Master Bedroom   (master_bedroom) -> mostly South-west  [S 33%, SW 67%]
+  Store            (store) -> mostly South-east  [SE 67%, S 33%]
+  Living Room      (living) -> mostly East  [E 33%, C 33%, W 33%]
+  Dining           (dining) -> mostly North-east  [NE 67%, N 33%]
+  Pooja            (pooja) -> mostly North-west  [N 33%, NW 67%]
+  Toilet           (toilet) -> mostly North-east  [NE 67%, N 33%]
+  Bedroom 2        (bedroom) -> mostly North-west  [N 33%, NW 67%]
+
+STEP 6a - Points for each room (out of 10)
+  Kitchen          ########..  8.3/10  (counts x3)
+  Master Bedroom   #########.  9.0/10  (counts x3)
+  Store            ######....  5.7/10  (counts x1)
+  Living Room      #######...  6.7/10  (counts x2)
+  Dining           ####......  3.7/10  (counts x1)
+  Pooja            ####......  4.3/10  (counts x3)
+  Toilet           #.........  1.0/10  (counts x3)
+  Bedroom 2        ########..  8.3/10  (counts x2)
+  Main door        in the North-east: 10/10
+  Open centre      10/10
+
+STEP 6b - Sun check (outside walls)
+  Kitchen          outside walls face: S, E
+  Master Bedroom   outside walls face: S, W
+  Store            outside walls face: E
+  Living Room      outside walls face: W, E
+  Dining           outside walls face: E
+  Pooja            outside walls face: W
+  Toilet           outside walls face: N, E
+  Bedroom 2        outside walls face: W, N
+
+STEP 7 - VASTU SCORE: 68.3 / 100  (Good)
+
+STEP 8 - Swap game (change what a room is used for)
+  Swap 'Pooja' <-> 'Toilet'  -> score becomes 83.2
+
+STEP 9 - To-do list (most important first)
+  1. Move 'Toilet' (1.0/10, now in the North-east) towards the North-west. Why: Waste goes to the north-west (Vayu, air). Never in the holy north-east or centre. Tip: Keep it dry, closed and fitted with an exhaust fan.
+  2. Move 'Pooja' (4.3/10, now in the North-west) towards the North-east. Why: North-east (Ishanya) is the holiest corner. Science: it gets soft morning sun. Tip: Face east or north while praying.
+  3. Move 'Living Room' (6.7/10, now in the East) towards the North, East, North-east. Why: Guests are welcomed in the bright, open north and east. Tip: Keep heavy furniture on the south and west walls.
+  4. Move 'Dining' (3.7/10, now in the North-east) towards the West. Why: Dining sits in the west, next to the kitchen. Tip: Keep the dining table close to the kitchen.
+  5. Move 'Store' (5.7/10, now in the South-east) towards the South-west. Why: Heavy storage makes the south-west strong. Tip: Keep the heaviest things on the south-west side.
+  6. 'Master Bedroom' has a west wall that reaches about 65.1 C in summer. Add shade outside (sunshade, plants) and use light paint.
+  7. 'Living Room' has a west wall that reaches about 65.1 C in summer. Add shade outside (sunshade, plants) and use light paint.
+  8. 'Pooja' has a west wall that reaches about 65.1 C in summer. Add shade outside (sunshade, plants) and use light paint.
+  9. 'Bedroom 2' has a west wall that reaches about 65.1 C in summer. Add shade outside (sunshade, plants) and use light paint.

@@ -1,0 +1,54 @@
+VASTU REPORT CARD - Courtyard villa (open centre)
+============================================================
+House size: 18 m x 18 m, north points up on the drawing
+
+STEP 5 - Which box is each room in?
+  Living Room      (living) -> mostly North-west  [NW 50%, N 50%]
+  Pooja            (pooja) -> mostly North-east  [NE 100%]
+  Verandah         (open_space) -> mostly North-east  [NE 100%]
+  Bedroom 2        (bedroom) -> mostly West  [W 100%]
+  Courtyard        (open_space) -> mostly Centre  [C 100%]
+  Dining           (dining) -> mostly East  [E 100%]
+  Master Bedroom   (master_bedroom) -> mostly South-west  [SW 100%]
+  Staircase        (staircase) -> mostly South  [S 100%]
+  Toilet           (toilet) -> mostly South  [S 100%]
+  Store            (store) -> mostly South  [S 100%]
+  Kitchen          (kitchen) -> mostly South-east  [SE 100%]
+
+STEP 6a - Points for each room (out of 10)
+  Living Room      ########..  8.5/10  (counts x2)
+  Pooja            ########## 10.0/10  (counts x3)
+  Verandah         ########## 10.0/10  (counts x1)
+  Bedroom 2        ########## 10.0/10  (counts x2)
+  Courtyard        #######...  7.0/10  (counts x1)
+  Dining           #######...  7.0/10  (counts x1)
+  Master Bedroom   ########## 10.0/10  (counts x3)
+  Staircase        ########## 10.0/10  (counts x2)
+  Toilet           #####.....  5.0/10  (counts x3)
+  Store            #######...  7.0/10  (counts x1)
+  Kitchen          ########## 10.0/10  (counts x3)
+  Main door        in the North-east: 10/10
+  Open centre      10/10
+
+STEP 6b - Sun check (outside walls)
+  Living Room      outside walls face: N, W
+  Pooja            outside walls face: N, E
+  Verandah         outside walls face: E
+  Bedroom 2        outside walls face: W
+  Dining           outside walls face: E
+  Master Bedroom   outside walls face: S, W
+  Staircase        outside walls face: S
+  Store            outside walls face: S
+  Kitchen          outside walls face: E, S
+
+STEP 7 - VASTU SCORE: 90.0 / 100  (Excellent)
+
+STEP 8 - Swap game (change what a room is used for)
+  No swap makes the house better. Nice!
+
+STEP 9 - To-do list (most important first)
+  1. Move 'Toilet' (5.0/10, now in the South) towards the North-west. Why: Waste goes to the north-west (Vayu, air). Never in the holy north-east or centre. Tip: Keep it dry, closed and fitted with an exhaust fan.
+  2. 'Living Room' has a west wall that reaches about 65.1 C in summer. Add shade outside (sunshade, plants) and use light paint.
+  3. 'Bedroom 2' has a west wall that reaches about 65.1 C in summer. Add shade outside (sunshade, plants) and use light paint.
+  4. 'Master Bedroom' has a west wall that reaches about 65.1 C in summer. Add shade outside (sunshade, plants) and use light paint.
+  5. 'Toilet' has no outside wall. Fit an exhaust fan or air duct.

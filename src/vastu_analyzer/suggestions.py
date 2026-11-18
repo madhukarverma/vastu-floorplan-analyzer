@@ -2,7 +2,7 @@
 
 STEP 8, the swap game:
     1. Try swapping the use of every pair of rooms (e.g. kitchen <-> bedroom).
-       Only rooms of similar size are swapped (the bigger one is at most twice the smaller),
+       Only rooms of similar size are swapped (the bigger one is at most 1.5x the smaller),
        and fixed things like stairs and corridors never move.
     2. Keep the single swap that raises the score the most.
     3. Repeat until no swap helps by at least 1 point (or after 5 swaps).
@@ -37,7 +37,7 @@ def best_swaps(house: House, max_swaps: int = 5) -> list[tuple[str, str, float]]
                     continue  # each pair once, and swapping two bedrooms changes nothing
                 if room_type(types[i]) in FIXED or room_type(types[j]) in FIXED:
                     continue  # stairs, corridors, balconies stay where they are
-                if max(a.area, b.area) > 2 * min(a.area, b.area):
+                if max(a.area, b.area) > 1.5 * min(a.area, b.area):
                     continue  # a kitchen will not fit in a cupboard
                 trial = list(types)
                 trial[i], trial[j] = trial[j], trial[i]

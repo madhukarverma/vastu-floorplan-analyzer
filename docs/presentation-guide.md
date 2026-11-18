@@ -13,24 +13,29 @@
 | 7 | **The two formulas** | Room points = weighted average by area share. House score = importance-weighted average × 10. |
 | 8 | **The science part** | East and west walls get the same sunshine, but the west wall gets it in the hot afternoon → about 65 °C vs 58.6 °C. That is a real reason behind "keep the west heavy". |
 | 9 | **LIVE DEMO** | See the demo script below. |
-| 10 | **Results** | Sample house 48.2 → 67.2 after 3 swaps; well-planned house 91.4. |
+| 10 | **Results** | 7 sample houses from 17.6 (Poor) to 91.4 (Excellent). The builder flat goes from 48.2 to 67.2 after 3 swaps. |
 | 11 | **Limits and future work** | Rectangles only, one door, Delhi sun numbers. Next: L-shaped rooms, more cities, reading CAD files. |
 
 ## Live demo script (3 minutes)
 
-1. Run `vastu app`, then click **Load sample**.
+1. Run `vastu app` and press **F11** for full screen. From **Sample houses**, pick
+   **2. Sample 3BHK house (as built)**.
    *"This is a normal builder flat: 12 by 15 metres, 14 rooms."*
 2. Click **ANALYSE**.
-   *"Score 48 out of 100. Red rooms are in a bad spot: the kitchen is in the north-east,
-   which Vastu says belongs to water and prayer, not fire."*
+   *"Score 48 out of 100, 'Needs work'. Red rooms are in a bad spot: the kitchen is in the
+   north-east, which Vastu says belongs to water and prayer, not fire. The banner says swaps
+   could take it to 67."*
 3. Scroll the report to **STEP 8**.
    *"The program suggests swapping the kitchen and bedroom 3. That alone gives about +10 points."*
-4. Click **Open...**, choose `examples/good_house.json`, then **ANALYSE**: 91.4, Excellent.
+4. From **Sample houses**, pick **7. Well-planned 3BHK house**, then **ANALYSE**: 91.4,
+   Excellent (green banner).
    Now change **North points** to `down` and click **ANALYSE** again: 35.0, Poor.
    *"Exactly the same rooms, just built facing the other way. The score falls from 91 to 35.
    Direction is everything in Vastu."*
 5. Click **Clear**, draw a kitchen in the bottom-right corner, then **ANALYSE**.
    *"Kitchen in the south-east: green, 10 out of 10."*
+6. Optional, to show the range: pick **1. Worst-case house** (17.6, red banner), then
+   **6. Courtyard villa** (90.0). The open courtyard in the middle is the Brahmasthan.
 
 > Tip: practise once on the computer you will present from. If `vastu` is not found, use
 > `python -m vastu_analyzer app` instead.

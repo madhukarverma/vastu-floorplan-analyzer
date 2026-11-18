@@ -1,0 +1,16 @@
+{
+  "name": "Worst-case house (almost every rule broken)",
+  "width": 12, "depth": 12, "north": "up",
+  "rooms": [
+    {"name": "Bedroom",        "type": "bedroom",        "x": 0, "y": 0, "w": 4, "h": 4},
+    {"name": "Staircase",      "type": "staircase",      "x": 4, "y": 0, "w": 4, "h": 4},
+    {"name": "Master Bedroom", "type": "master_bedroom", "x": 8, "y": 0, "w": 4, "h": 4},
+    {"name": "Living Room",    "type": "living",         "x": 0, "y": 4, "w": 4, "h": 4},
+    {"name": "Toilet",         "type": "toilet",         "x": 4, "y": 4, "w": 4, "h": 4},
+    {"name": "Store",          "type": "store",          "x": 8, "y": 4, "w": 4, "h": 4},
+    {"name": "Kitchen",        "type": "kitchen",        "x": 0, "y": 8, "w": 4, "h": 4},
+    {"name": "Dining",         "type": "dining",         "x": 4, "y": 8, "w": 4, "h": 4},
+    {"name": "Pooja",          "type": "pooja",          "x": 8, "y": 8, "w": 4, "h": 4}
+  ],
+  "door": {"x": 2, "y": 12}
+}

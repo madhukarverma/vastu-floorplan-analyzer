@@ -1,0 +1,44 @@
+VASTU REPORT CARD - East-facing 2BHK flat (north points right)
+============================================================
+House size: 10 m x 12 m, north points right on the drawing
+
+STEP 5 - Which box is each room in?
+  Master Bedroom   (master_bedroom) -> mostly South-west  [SW 83%, W 17%]
+  Bedroom 2        (bedroom) -> mostly North-west  [W 44%, NW 56%]
+  Pooja            (pooja) -> mostly South  [S 100%]
+  Living Room      (living) -> mostly Centre  [S 5%, C 48%, N 48%]
+  Kitchen          (kitchen) -> mostly South-east  [SE 83%, E 17%]
+  Dining           (dining) -> mostly East  [E 89%, NE 11%]
+  Toilet           (toilet) -> mostly North-east  [NE 100%]
+
+STEP 6a - Points for each room (out of 10)
+  Master Bedroom   ##########  9.5/10  (counts x3)
+  Bedroom 2        ########## 10.0/10  (counts x2)
+  Pooja            ..........  0.0/10  (counts x3)
+  Living Room      #######...  7.3/10  (counts x2)
+  Kitchen          #########.  9.2/10  (counts x3)
+  Dining           #######...  6.6/10  (counts x1)
+  Toilet           ..........  0.0/10  (counts x3)
+  Main door        in the East: 10/10
+  Open centre      10/10
+
+STEP 6b - Sun check (outside walls)
+  Master Bedroom   outside walls face: W, S
+  Bedroom 2        outside walls face: W, N
+  Pooja            outside walls face: S
+  Living Room      outside walls face: N
+  Kitchen          outside walls face: E, S
+  Dining           outside walls face: E
+  Toilet           outside walls face: N, E
+
+STEP 7 - VASTU SCORE: 67.0 / 100  (Good)
+
+STEP 8 - Swap game (change what a room is used for)
+  Swap 'Pooja' <-> 'Toilet'  -> score becomes 87.4
+
+STEP 9 - To-do list (most important first)
+  1. Move 'Pooja' (0.0/10, now in the South) towards the North-east. Why: North-east (Ishanya) is the holiest corner. Science: it gets soft morning sun. Tip: Face east or north while praying.
+  2. Move 'Toilet' (0.0/10, now in the North-east) towards the North-west. Why: Waste goes to the north-west (Vayu, air). Never in the holy north-east or centre. Tip: Keep it dry, closed and fitted with an exhaust fan.
+  3. Move 'Dining' (6.6/10, now in the East) towards the West. Why: Dining sits in the west, next to the kitchen. Tip: Keep the dining table close to the kitchen.
+  4. 'Master Bedroom' has a west wall that reaches about 65.1 C in summer. Add shade outside (sunshade, plants) and use light paint.
+  5. 'Bedroom 2' has a west wall that reaches about 65.1 C in summer. Add shade outside (sunshade, plants) and use light paint.

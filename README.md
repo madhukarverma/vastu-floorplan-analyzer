@@ -28,16 +28,22 @@ vastu app
 
 In the window:
 
-1. Click **Load sample**, or pick a room type and **click-and-drag** to draw each room.
+1. Pick one of the 7 **sample houses** from the list, or pick a room type and
+   **click-and-drag** to draw each room.
 2. Choose **Place main door** and click on an outside wall.
 3. Set which way **north** points on your drawing.
-4. Click **ANALYSE**. Rooms turn **green** (good), **yellow** (okay) or **red** (bad), and the
-   report card appears on the right.
+4. Click **ANALYSE**:
+   - Rooms turn **green** (good), **yellow** (okay) or **red** (bad).
+   - A **big score banner** appears, coloured by grade: green Excellent, blue Good,
+     amber Needs work, red Poor.
+   - The **colour-coded report card** fills the right-hand panel.
+5. Press **F11** (or the *Full screen* button) for full screen, which is ideal on a projector.
+   **Esc** leaves full screen. The drawing grows to fill the screen.
 
 Prefer the terminal? Run:
 
 ```bash
-vastu analyze examples/sample_house.json
+vastu analyze examples/2_builder_3bhk.json
 ```
 
 ## How it works, in simple terms
@@ -79,13 +85,20 @@ count 3×, others 1–2×:
 score = 100 × sum(importance × points) / sum(importance × 10)
 ```
 
-### Example result
+### The 7 sample houses (from worst to best)
 
-| House | Score | Main problems found |
-|---|---|---|
-| [`sample_house.json`](examples/sample_house.json) (typical builder plan) | **48.2 / 100** (Needs work) | Kitchen in the north / north-east, toilet in the north-east, door in the south |
-| …after the 3 suggested swaps | **67.2 / 100** (Good) | Kitchen ↔ Bedroom 3, Toilet 1 ↔ Pooja, Living ↔ Kitchen |
-| [`good_house.json`](examples/good_house.json) (well planned) | **91.4 / 100** (Excellent) | Only small sun-shade tips |
+They cover every grade, different sizes and every north direction, so you can show how the
+checker reacts to very different homes.
+
+| # | Sample house | Size | North | Score | After swaps | What it shows |
+|---|---|---|---|---|---|---|
+| 1 | [Worst-case house](examples/1_worst_house.json) | 12 × 12 m | up | **17.6** Poor | 76.0 | Kitchen in SW, toilet in the centre, pooja in SE, door in SW: almost every rule broken |
+| 2 | [Builder 3BHK](examples/2_builder_3bhk.json) | 12 × 15 m | up | **48.2** Needs work | 67.2 | Typical flat: kitchen and toilet in the north-east, south door |
+| 3 | [East-facing 2BHK](examples/3_east_facing_2bhk.json) | 10 × 12 m | right | **67.0** Good | 87.4 | Rotated drawing; toilet in the NE, pooja in the S (one swap fixes both) |
+| 4 | [Narrow row house](examples/4_narrow_row_house.json) | 6 × 18 m | down | **68.3** Good | 83.2 | Long thin plot drawn upside down; toilet in the NE corner |
+| 5 | [Compact 1BHK studio](examples/5_studio_1bhk.json) | 9 × 9 m | up | **82.4** Excellent | 86.6 | Small home, mostly right; toilet in the east |
+| 6 | [Courtyard villa](examples/6_courtyard_villa.json) | 18 × 18 m | up | **90.0** Excellent | – | Large house with an open central courtyard (Brahmasthan) |
+| 7 | [Well-planned 3BHK](examples/7_well_planned_3bhk.json) | 12 × 15 m | up | **91.4** Excellent | – | Every main room in its best spot |
 
 Full reports are in [`examples/output/`](examples/output).
 
@@ -102,8 +115,8 @@ src/vastu_analyzer/
   report.py                 the printed report card
   app.py                    the window app (Tkinter)
   cli.py                    `vastu app` and `vastu analyze`
-tests/test_vastu.py         12 small tests, one per step
-examples/                   two sample houses + their reports
+tests/test_vastu.py         small tests: one per step, plus every sample house
+examples/                   7 sample houses (worst to best) + their reports
 docs/                       approaches, procedure, input format, presentation guide, paper
 ```
 

@@ -105,7 +105,8 @@ living room, stairs and the open centre count **2×**; everything else counts **
 
 Moving walls is expensive, but changing what a room is **used for** is cheap. So the program:
 
-1. tries swapping every pair of rooms of similar size (stairs and corridors never move),
+1. tries swapping every pair of rooms of similar size (the bigger one at most 1.5× the
+   smaller; stairs and corridors never move),
 2. keeps the swap that raises the score the most,
 3. repeats until no swap helps by at least 1 point.
 

@@ -36,11 +36,11 @@ def test_check_finds_mistakes() -> None:
     assert "North" in problems
     assert "sticks out" in problems
     assert "overlap" in problems
-    assert check_house(load_house(EXAMPLES / "sample_house.json")) == []
+    assert check_house(load_house(EXAMPLES / "2_builder_3bhk.json")) == []
 
 
 def test_save_and_load_give_the_same_house(tmp_path: Path) -> None:
-    house = load_house(EXAMPLES / "good_house.json")
+    house = load_house(EXAMPLES / "7_well_planned_3bhk.json")
     save_house(house, tmp_path / "copy.json")
     assert load_house(tmp_path / "copy.json") == house
 
@@ -79,8 +79,8 @@ def test_aliases() -> None:
 
 
 def test_good_house_beats_sample_house() -> None:
-    good = analyse(load_house(EXAMPLES / "good_house.json"))
-    sample = analyse(load_house(EXAMPLES / "sample_house.json"))
+    good = analyse(load_house(EXAMPLES / "7_well_planned_3bhk.json"))
+    sample = analyse(load_house(EXAMPLES / "2_builder_3bhk.json"))
     assert good.score >= 80
     assert sample.score < 60
     assert good.grade == "Excellent"
@@ -95,7 +95,7 @@ def test_toilet_in_centre_blocks_brahmasthan() -> None:
 
 
 def test_swap_moves_kitchen_to_south_east() -> None:
-    result = analyse(load_house(EXAMPLES / "sample_house.json"))
+    result = analyse(load_house(EXAMPLES / "2_builder_3bhk.json"))
     first_swap = result.swaps[0]
     assert {first_swap[0], first_swap[1]} == {"Kitchen", "Bedroom 3"}
     assert first_swap[2] > result.score
@@ -113,10 +113,25 @@ def test_door_and_sun_advice() -> None:
 
 
 def test_command_line(capsys: pytest.CaptureFixture[str], tmp_path: Path) -> None:
-    assert main(["analyze", str(EXAMPLES / "sample_house.json")]) == 0
+    assert main(["analyze", str(EXAMPLES / "2_builder_3bhk.json")]) == 0
     assert "VASTU SCORE" in capsys.readouterr().out
 
     bad = tmp_path / "bad.json"
     bad.write_text('{"width": 5, "depth": 5, "rooms": []}', encoding="utf-8")
     assert main(["analyze", str(bad)]) == 1
     assert "fix the drawing" in capsys.readouterr().out
+
+
+# The sample houses ---------------------------------------------------------------------
+
+
+@pytest.mark.parametrize("path", sorted(EXAMPLES.glob("*.json")), ids=lambda p: p.stem)
+def test_every_sample_house_is_valid(path: Path) -> None:
+    assert check_house(load_house(path)) == []
+
+
+def test_samples_cover_every_grade_in_order() -> None:
+    results = [analyse(load_house(p)) for p in sorted(EXAMPLES.glob("*.json"))]
+    scores = [r.score for r in results]
+    assert scores == sorted(scores)  # files are numbered from worst to best
+    assert {r.grade for r in results} == {"Poor", "Needs work", "Good", "Excellent"}
