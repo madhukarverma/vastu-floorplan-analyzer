@@ -67,7 +67,13 @@ Each approach is scored 1–5 on six criteria (5 = best). The weighted score is
 
 ## Decision
 
-Implement **A1**, designed so that A2 (DXF), A3 (GUI) and A4 (grid) can be added later as input
-adapters without changing the back end. The flowchart and step-by-step procedure are in
-[procedure.md](procedure.md). The full theory, validation and results are in the paper
-([docs/paper](paper/)).
+Implement **A1**.
+
+- **The classroom code** keeps A1 simple. Rooms are rectangles drawn in a small window app,
+  scored against a 3×3 grid with a readable rule book. The sun check uses fixed numbers from
+  the paper.
+- **The full research version** (polygons, solar-position physics, optimiser) is kept at tag
+  `v1.0.0` and described in the paper ([docs/paper](paper/)).
+
+A2 (DXF), A3 (GUI) and A4 (grid) can still be added later as other ways to enter a house.
+The step-by-step procedure is in [procedure.md](procedure.md).

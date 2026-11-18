@@ -4,12 +4,30 @@ All notable changes to this project are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [2.0.0] - 2026-11-18
+
+Simplified classroom version. The detailed research engine stays available at tag `v1.0.0`.
 
 ### Added
 
-- Plain-language flowchart (`docs/figures/simple_flowchart.svg`) and a simple step-by-step
-  explanation on the README and in `docs/procedure.md`.
+- Tkinter window app (`vastu app`): draw rooms with the mouse, place the door, set north,
+  click Analyse to get coloured rooms and a report card.
+- Plain-language flowchart (`docs/figures/simple_flowchart.svg`) and walkthrough.
+- Presentation guide with slide plan, live demo script and likely questions.
+- Step-by-step terminal report (`vastu analyze house.json`).
+
+### Changed
+
+- Rewritten as 9 short, commented modules that follow the flowchart steps one by one.
+- Rooms are rectangles; north is up / right / down / left; points are 0-10 per room and
+  the score is out of 100.
+- Rule book is a plain Python dictionary in `rules.py`.
+- 12 small tests, one per step.
+
+### Removed
+
+- Polygon geometry, solar-position physics, mass dipole, magnetic declination, the click
+  digitiser and the paper build scripts (all still in `v1.0.0`; the paper PDF is kept in `docs/paper`).
 
 ## [1.0.0] - 2026-11-12
 

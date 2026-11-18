@@ -1,189 +1,143 @@
-# vastu-floorplan-analyzer
+# Vastu Checker for House Maps
 
 [![CI](https://github.com/madhukarverma/vastu-floorplan-analyzer/actions/workflows/ci.yml/badge.svg)](https://github.com/madhukarverma/vastu-floorplan-analyzer/actions/workflows/ci.yml)
-![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue)
-![Runtime deps](https://img.shields.io/badge/runtime%20dependencies-0-brightgreen)
-![Typed](https://img.shields.io/badge/typing-mypy%20strict-informational)
-[![Ruff](https://img.shields.io/badge/lint-ruff-261230)](https://github.com/astral-sh/ruff)
+![Python](https://img.shields.io/badge/python-3.10%20%E2%80%93%203.13-blue)
+![Dependencies](https://img.shields.io/badge/dependencies-none-brightgreen)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
 
-This tool analyses the architectural plan of a house against **Vastu Shastra** and
-**first-principles solar physics**, then suggests improvements. Every step is deterministic.
-**No AI or machine learning is used**: no neural image segmentation and no OCR. The geometry
-is exact computational geometry, the rules are an auditable JSON knowledge base, and the
-physics uses closed-form NOAA, Kasten–Young, Meinel and ASHRAE models.
+A simple Python project. **Draw your house, click Analyse, and get a Vastu score out of 100**,
+with easy-to-follow suggestions to improve it.
+
+- Pure Python, with **no extra libraries** (the window uses Tkinter, which ships with Python).
+- **No AI or machine learning.** Every answer comes from clear rules you can read in
+  [`rules.py`](src/vastu_analyzer/rules.py).
+- Each suggestion explains **why**: the Vastu reason and the science reason.
 
 <p align="center">
-  <img src="examples/output/sample_3bhk_delhi_plan.png" width="420" alt="Annotated zone map of the sample plan">
+  <img src="docs/figures/app_screenshot.png" width="720" alt="The Vastu Checker window: a house plan with rooms coloured green, yellow and red, and the report card on the right">
 </p>
 
-## What it does
-
-| Stage | Method |
-|---|---|
-| Input | Plan as JSON polygons (footprint, rooms, doors, north arrow), or a scanned image traced by clicks with `vastu digitize` |
-| Orientation | True north from the north arrow, with WMM2025 magnetic declination; exact rotation to a cardinal frame |
-| Zoning | 3 × 3 Vastu-Purusha mandala; room membership by exact Sutherland–Hodgman clipping; 16-sector bearings |
-| Vastu rules | Room–zone values, entrance sector, Brahmasthana, corner cuts, shape, SW-heavy mass dipole → **Vastu Compliance Index (VCI)** |
-| Physics | NOAA sun position, Meinel clear-sky DNI, irradiation on every exterior wall, sol-air temperature, overhang sizing |
-| Optimiser | Steepest-ascent exchange of room functions that maximises the VCI |
-| Output | Prioritised findings with Vastu remedies and physical mitigations; text, Markdown or JSON report; annotated zone map |
-
-## Quick start
+## Run it in 1 minute
 
 ```bash
 git clone https://github.com/madhukarverma/vastu-floorplan-analyzer.git
 cd vastu-floorplan-analyzer
-python -m pip install -e ".[plot]"
-vastu analyze examples/sample_3bhk_delhi.json --plot plan.png
+pip install -e .
+vastu app
 ```
 
-```text
-Vastu assessment: Sample 3BHK, New Delhi (as built)
-  Vastu Compliance Index (VCI): 60.5 / 100  [Fair]
-  components: rooms=45, entrance=50, brahmasthana=100, corners=100, shape=100, mass_balance=63
-  after suggested exchanges: 75.8
-  ...
-  [CRITICAL]  Kitchen: 'Kitchen' lies mainly in the N zone (Uttara (Kubera)); placement compliance 0%.
-              -> Preferred zone(s): SE. Place the cooking range in the SE corner of the kitchen ...
-  [CRITICAL]  Toilet 1: 'Toilet 1' (toilet / bathroom) lies mainly in the NE zone (Ishanya (Ishana)) ...
-  ...
-  Suggested function exchanges (greedy optimiser):
-  1. use 'Kitchen' as bedroom and 'Bedroom 3' as kitchen: VCI 60.5 -> 68.6 (+8.1)
-  2. use 'Toilet 1' as pooja and 'Pooja' as toilet: VCI 68.6 -> 72.3 (+3.7)
-  3. use 'Living Room' as bedroom and 'Kitchen' as living: VCI 72.3 -> 75.8 (+3.4)
-```
+In the window:
 
-Full sample reports are in [`examples/output/`](examples/output).
+1. Click **Load sample**, or pick a room type and **click-and-drag** to draw each room.
+2. Choose **Place main door** and click on an outside wall.
+3. Set which way **north** points on your drawing.
+4. Click **ANALYSE**. Rooms turn **green** (good), **yellow** (okay) or **red** (bad), and the
+   report card appears on the right.
 
-### Command-line interface
+Prefer the terminal? Run:
 
-| Command | Purpose |
-|---|---|
-| `vastu analyze PLAN.json [-f text\|md\|json] [-o OUT] [--plot PNG] [--rules RULES.json] [--no-optimise]` | Assess a plan |
-| `vastu solar --lat 28.61 --lon 77.21 --date 2026-06-21` | Facade irradiation / sol-air table for a site and day |
-| `vastu rules` | Print the zone-value matrix of the rule base |
-| `vastu digitize scan.png -o PLAN.json` | Click-trace a scanned plan into JSON (interactive, human in the loop) |
-
-### Python API
-
-```python
-from vastu_analyzer import analyze, load_plan, to_markdown
-
-result = analyze(load_plan("examples/sample_3bhk_delhi.json"))
-print(result.vci, result.optimised_vci)
-for f in result.findings[:3]:
-    print(f.severity, f.subject, f.suggestion)
-print(to_markdown(result))
+```bash
+vastu analyze examples/sample_house.json
 ```
 
 ## How it works, in simple terms
 
 <p align="center">
-  <img src="docs/figures/simple_flowchart.svg" width="560" alt="Simple flowchart: give a house map, trace rooms, check the drawing, find north, lay a 3x3 grid, see which box each room is in, check Vastu rules and sun heat, score out of 100, swap rooms if the score is low, then get a to-do list and report card">
+  <img src="docs/figures/simple_flowchart.svg" width="520" alt="Flowchart: give your house map, trace rooms, check the drawing, find north, put a 3x3 grid on top, see which box each room is in, check Vastu rules and sun, give a score, swap rooms if the score is low, make a to-do list, get the report card">
 </p>
 
-Think of your house as a toy box where every toy has a favourite spot. The tool checks
+Think of your house as a toy box where every toy has a favourite spot. The program checks
 whether each room is in its favourite spot, gives the house a score, and tells you how to
 tidy up.
 
-1. **Trace every room.** Draw a line around each room on your map and name it.
-2. **Check the drawing.** Make sure nothing is missing or wrong.
-3. **Find north.** Turn the map so north points up, like setting a compass.
-4. **Put a 3×3 grid on top.** Like a tic-tac-toe board: each box is a direction
-   (north, north-east, east, ...) and the middle box is the centre.
-5. **See which box each room is in.** For example, "the kitchen is in the north-east box".
-6. **Two checkers look at the house.**
-   - *Vastu rules:* each room has a favourite spot (kitchen in the south-east, prayer room
-     in the north-east, parents' bedroom in the south-west).
-   - *Sun checker:* which walls get too hot in the afternoon and need shade.
-7. **Give a score.** All the points add up to a mark out of 100, like a school test.
-8. **Swap rooms if the score is low.** Try trading rooms (kitchen ↔ bedroom) and keep only
-   the swaps that raise the score.
-9. **Make a to-do list.** Biggest fixes first, each with the Vastu reason and the sun reason,
-   plus a coloured map (blue rooms are happy, red rooms are not).
+| Step | What happens | Code file |
+|---|---|---|
+| 1. Trace every room | Each room is a rectangle: where it starts (x, y) and its size (w, h) | [`house.py`](src/vastu_analyzer/house.py) |
+| 2. Check the drawing | Rooms must be inside the house and must not overlap | [`house.py`](src/vastu_analyzer/house.py) |
+| 3. Find north | If north is not "up", the compass labels are turned round | [`compass.py`](src/vastu_analyzer/compass.py) |
+| 4. Put a 3×3 grid on top | Like tic-tac-toe: NW, N, NE / W, Centre, E / SW, S, SE | [`compass.py`](src/vastu_analyzer/compass.py) |
+| 5. Which box is each room in? | Measure how much of each room falls in each box | [`compass.py`](src/vastu_analyzer/compass.py) |
+| 6a. Vastu rules | Each room type has best / good / okay / bad boxes (10 / 7 / 5 / 0 points) | [`rules.py`](src/vastu_analyzer/rules.py) |
+| 6b. Sun check | West walls get hottest (about 65 °C in a Delhi summer), so suggest shade | [`sun.py`](src/vastu_analyzer/sun.py) |
+| 7. Give a score | Weighted average of all points → a mark out of 100 | [`scoring.py`](src/vastu_analyzer/scoring.py) |
+| 8. Swap rooms | Try swapping room uses; keep the swaps that raise the score | [`suggestions.py`](src/vastu_analyzer/suggestions.py) |
+| 9. To-do list | Biggest problems first, each with the Vastu reason and the science reason | [`suggestions.py`](src/vastu_analyzer/suggestions.py) |
 
-## How it works, in technical terms
+### The two formulas
 
-```mermaid
-flowchart LR
-    A[Plan JSON / digitised scan] --> B[Validate & normalise]
-    B --> C[Orient: true north, WMM2025]
-    C --> D[Geometry & 3x3 mandala zoning]
-    D --> E[Vastu rule engine]
-    D --> F[Solar physics engine]
-    E --> G[VCI score]
-    F --> G
-    G --> H{Critical defects?}
-    H -- yes --> I[Exchange optimiser]
-    I --> G
-    H -- no --> J[Prioritised suggestions + report]
-    I --> J
+**Room points (0–10).** A room can sit across several boxes, so we take a weighted average:
+
+```
+points = sum of (share of the room in a box × points for that box)
+e.g. kitchen half in SE (10) and half in S (5):  0.5×10 + 0.5×5 = 7.5
 ```
 
-- **Why this approach?** Eight non-ML approaches were scored on a weighted decision matrix; see
-  [docs/approaches.md](docs/approaches.md).
-- **Step-by-step procedure:** [docs/procedure.md](docs/procedure.md).
-- **Input format:** [docs/input-schema.md](docs/input-schema.md).
-- **Research paper (PDF, physics-journal style):**
-  [docs/paper/Vastu_Geometric_Physical_Framework.pdf](docs/paper/Vastu_Geometric_Physical_Framework.pdf).
+**House score (0–100).** Important rooms (kitchen, master bedroom, pooja, toilet, main door)
+count 3×, others 1–2×:
 
-## Key physical result
+```
+score = 100 × sum(importance × points) / sum(importance × 10)
+```
 
-East and west walls in New Delhi receive the **same** daily irradiation on 21 June
-(4.31 kWh m⁻²). The **west** wall's sol-air peak is still **6.5 K higher** (65.1 °C vs 58.6 °C),
-because its beam load coincides with the afternoon air-temperature maximum. That is a
-measurable basis for the Vastu maxim *heavy south-west, open north-east*. Claims about the
-geomagnetic field, by contrast, are encoded only as cultural remedies, with no physical
-rationale attached.
+### Example result
 
-## Project layout
+| House | Score | Main problems found |
+|---|---|---|
+| [`sample_house.json`](examples/sample_house.json) (typical builder plan) | **48.2 / 100** (Needs work) | Kitchen in the north / north-east, toilet in the north-east, door in the south |
+| …after the 3 suggested swaps | **67.2 / 100** (Good) | Kitchen ↔ Bedroom 3, Toilet 1 ↔ Pooja, Living ↔ Kitchen |
+| [`good_house.json`](examples/good_house.json) (well planned) | **91.4 / 100** (Excellent) | Only small sun-shade tips |
+
+Full reports are in [`examples/output/`](examples/output).
+
+## Project files
 
 ```
 src/vastu_analyzer/
-  geometry.py   shoelace area/centroid, Sutherland-Hodgman clipping, ray casting
-  zoning.py     3x3 Vastu-Purusha mandala, 16-sector compass
-  rules.py      knowledge-base loader (data/rules.json)
-  solar.py      NOAA sun position, Kasten-Young, Meinel, sol-air temperature
-  engine.py     scoring, findings, exchange optimiser
-  report.py     text / Markdown / JSON
-  plotting.py   annotated zone map (optional matplotlib)
-  digitize.py   click-based digitiser for scans (optional matplotlib)
-  cli.py        `vastu` command
-tests/          72 unit tests (geometry, zoning, solar validation, engine, loader, CLI)
-examples/       sample plans and generated reports
-paper/          figure and PDF build scripts (ReportLab)
-docs/           approaches ranking, procedure, schema, figures, paper PDF
+  house.py        STEP 1-2  rooms, door, load/save, check the drawing
+  compass.py      STEP 3-5  north, 3x3 grid, which box each room is in
+  rules.py        STEP 6a   the Vastu rule book (easy to edit)
+  sun.py          STEP 6b   hot-wall check
+  scoring.py      STEP 7    points and the score out of 100
+  suggestions.py  STEP 8-9  swap game and to-do list
+  report.py                 the printed report card
+  app.py                    the window app (Tkinter)
+  cli.py                    `vastu app` and `vastu analyze`
+tests/test_vastu.py         12 small tests, one per step
+examples/                   two sample houses + their reports
+docs/                       approaches, procedure, input format, presentation guide, paper
 ```
 
-## Development
+## More documents
+
+- [Why this approach?](docs/approaches.md): 8 ways to solve the problem, ranked.
+- [Step-by-step procedure](docs/procedure.md)
+- [House file format](docs/input-format.md)
+- [Presentation guide](docs/presentation-guide.md): slides, live demo script, likely questions.
+- [Research paper (PDF)](docs/paper/Vastu_Geometric_Physical_Framework.pdf): the full theory,
+  including the physics behind the sun check. The paper describes the detailed research model
+  (tag [`v1.0.0`](https://github.com/madhukarverma/vastu-floorplan-analyzer/tree/v1.0.0));
+  this code is the simplified classroom version of the same idea, so its scores differ.
+
+## For developers
 
 ```bash
-python -m pip install -e ".[dev]"
-pre-commit install
-ruff check . && ruff format --check . && mypy && pytest --cov
+pip install -e ".[dev]"
+pytest            # run the tests
+ruff check .      # style check
+mypy              # type check
 ```
 
-Rebuild the paper and all its figures:
+## Simplifications (on purpose)
 
-```bash
-python -m pip install -e ".[paper]"
-python paper/figures.py
-python paper/build_paper.py
-```
-
-Edit `paper/metadata.json` to set the author block before rebuilding.
-
-## Citing
-
-See [CITATION.cff](CITATION.cff).
+- The house and its rooms are rectangles, and north is one of up / right / down / left.
+- One main door. The sun check uses fixed numbers for New Delhi.
+- Vastu books differ on some rules; ours are a common consensus and live in one editable file.
 
 ## Disclaimer
 
-Vastu Shastra is a traditional system. This software measures compliance with a codified,
-editable set of Vastu heuristics and reports physically grounded comfort indicators. It
-does not claim that following Vastu has effects beyond those physical indicators. Consult a
-qualified architect or structural engineer before making changes to a building.
+Vastu Shastra is a traditional system. This tool checks a house against a simple, editable set
+of Vastu rules and adds common-sense comfort tips. Talk to an architect before changing a real
+building.
 
 ## License
 

@@ -7,11 +7,10 @@ Thanks for your interest in improving **vastu-floorplan-analyzer**.
 - **No AI/ML.** The project's core constraint is that every inference is deterministic and
   auditable. Pull requests that add learned models, neural OCR or image segmentation will not
   be merged.
-- **Rules are data.** Vastu placement values live in
-  [`src/vastu_analyzer/data/rules.json`](src/vastu_analyzer/data/rules.json). When you change
-  a value, cite your source in the pull request.
-- **Physics must be validated.** Any new physical model needs a test against an analytic or
-  published reference value (see `tests/test_solar.py`).
+- **Keep it simple.** This is a teaching project: readable code beats clever code.
+- **Rules live in one place.** Vastu placement values are in
+  [`src/vastu_analyzer/rules.py`](src/vastu_analyzer/rules.py). When you change a value,
+  cite your source in the pull request.
 
 ## Development setup
 
@@ -30,12 +29,12 @@ mypy
 pytest --cov
 ```
 
-All checks must pass. Coverage must stay at or above 85 %.
+All checks must pass, and coverage must stay at or above 85 %. Also try the window app by hand (`vastu app`).
 
 ## Commit messages
 
 Use [Conventional Commits](https://www.conventionalcommits.org/), for example
-`feat(engine): add 32-pada entrance model` or `fix(solar): handle polar night`.
+`feat(rules): add garage rules` or `fix(app): keep door on the wall`.
 
 ## Reporting issues
 
