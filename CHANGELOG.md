@@ -4,6 +4,13 @@ All notable changes to this project are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- Plain-language flowchart (`docs/figures/simple_flowchart.svg`) and a simple step-by-step
+  explanation on the README and in `docs/procedure.md`.
+
 ## [1.0.0] - 2026-11-12
 
 ### Added

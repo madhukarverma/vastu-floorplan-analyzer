@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="966" viewBox="0 0 680 966" role="img" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+<title>How the Vastu checker works, step by step</title>
+<desc>Give a house map, trace rooms, check the drawing, find north, lay a 3 by 3 grid, see which box each room is in, check Vastu rules and sun heat, score out of 100, swap rooms if the score is low, then make a to-do list and report card.</desc>
+<defs>
+  <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#73726c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+  <style>
+    .t{font-size:14px;font-weight:500;text-anchor:middle;dominant-baseline:central}
+    .s{font-size:12px;text-anchor:middle;dominant-baseline:central}
+    .l{font-size:12px;fill:#5f5e5a}
+    .ar{stroke:#73726c;stroke-width:1.5;fill:none}
+    .gray rect{fill:#F1EFE8;stroke:#5F5E5A}.gray .t{fill:#2C2C2A}.gray .s{fill:#5F5E5A}
+    .teal rect{fill:#E1F5EE;stroke:#0F6E56}.teal .t{fill:#085041}.teal .s{fill:#0F6E56}
+    .purple rect{fill:#EEEDFE;stroke:#534AB7}.purple .t{fill:#3C3489}.purple .s{fill:#534AB7}
+    .amber rect{fill:#FAEEDA;stroke:#854F0B}.amber .t{fill:#633806}.amber .s{fill:#854F0B}
+    rect{stroke-width:0.8}
+  </style>
+</defs>
+<rect x="0" y="0" width="680" height="966" fill="#ffffff" stroke="none"/>
+
+<g class="gray"><rect x="160" y="40" width="360" height="56" rx="8"/><text class="t" x="340" y="58">You give your house map</text><text class="s" x="340" y="78">A picture or drawing of your home</text></g>
+<line x1="340" y1="96" x2="340" y2="118" class="ar" marker-end="url(#a)"/>
+
+<g class="teal"><rect x="160" y="120" width="360" height="56" rx="8"/><text class="t" x="340" y="138">1. Trace every room</text><text class="s" x="340" y="158">Click each room's corners, name it</text></g>
+<line x1="340" y1="176" x2="340" y2="198" class="ar" marker-end="url(#a)"/>
+
+<g class="teal"><rect x="160" y="200" width="360" height="56" rx="8"/><text class="t" x="340" y="218">2. Check the drawing</text><text class="s" x="340" y="238">No missing walls, no silly mistakes</text></g>
+<line x1="340" y1="256" x2="340" y2="278" class="ar" marker-end="url(#a)"/>
+
+<g class="teal"><rect x="160" y="280" width="360" height="56" rx="8"/><text class="t" x="340" y="298">3. Find north</text><text class="s" x="340" y="318">Turn the map so north points up</text></g>
+<line x1="340" y1="336" x2="340" y2="358" class="ar" marker-end="url(#a)"/>
+
+<g class="teal"><rect x="160" y="360" width="360" height="56" rx="8"/><text class="t" x="340" y="378">4. Put a 3×3 grid on top</text><text class="s" x="340" y="398">Like a tic-tac-toe board: 9 boxes</text></g>
+<line x1="340" y1="416" x2="340" y2="438" class="ar" marker-end="url(#a)"/>
+
+<g class="teal"><rect x="160" y="440" width="360" height="56" rx="8"/><text class="t" x="340" y="458">5. Which box is each room in?</text><text class="s" x="340" y="478">Kitchen is in the north-east box</text></g>
+<path d="M340 496 L340 508 L210 508 L210 518" class="ar" marker-end="url(#a)"/>
+<path d="M340 508 L470 508 L470 518" class="ar" marker-end="url(#a)"/>
+
+<g class="purple"><rect x="100" y="520" width="220" height="56" rx="8"/><text class="t" x="210" y="538">6a. Vastu rules</text><text class="s" x="210" y="558">Is each room in its spot?</text></g>
+<g class="purple"><rect x="360" y="520" width="220" height="56" rx="8"/><text class="t" x="470" y="538">6b. Sun checker</text><text class="s" x="470" y="558">Which walls get too hot?</text></g>
+<path d="M210 576 L210 592 L340 592 L340 608" class="ar" marker-end="url(#a)"/>
+<path d="M470 576 L470 592 L340 592" class="ar"/>
+
+<g class="purple"><rect x="160" y="610" width="360" height="56" rx="8"/><text class="t" x="340" y="628">7. Give a score</text><text class="s" x="340" y="648">Points out of 100, like a test</text></g>
+<line x1="340" y1="666" x2="340" y2="688" class="ar" marker-end="url(#a)"/>
+
+<g class="amber"><rect x="220" y="690" width="240" height="56" rx="8"/><text class="t" x="340" y="708">Is the score good?</text><text class="s" x="340" y="728">Any big problems left?</text></g>
+<line x1="460" y1="718" x2="488" y2="718" class="ar" marker-end="url(#a)"/>
+<text class="l" x="474" y="704" text-anchor="middle">no</text>
+
+<g class="amber"><rect x="490" y="690" width="150" height="56" rx="8"/><text class="t" x="565" y="708">8. Swap rooms</text><text class="s" x="565" y="728">Then score again</text></g>
+<path d="M565 690 L565 638 L522 638" class="ar" marker-end="url(#a)"/>
+
+<line x1="340" y1="746" x2="340" y2="788" class="ar" marker-end="url(#a)"/>
+<text class="l" x="356" y="768">yes</text>
+
+<g class="teal"><rect x="160" y="790" width="360" height="56" rx="8"/><text class="t" x="340" y="808">9. Make a to-do list</text><text class="s" x="340" y="828">Biggest fixes first, with the why</text></g>
+<line x1="340" y1="846" x2="340" y2="868" class="ar" marker-end="url(#a)"/>
+
+<g class="gray"><rect x="160" y="870" width="360" height="56" rx="8"/><text class="t" x="340" y="888">Your house report card</text><text class="s" x="340" y="908">Score, coloured map and tips</text></g>
+</svg>

@@ -1,5 +1,14 @@
 # Detailed procedure of the selected approach (A1)
 
+## Simple overview
+
+![Simple flowchart of the analysis](figures/simple_flowchart.svg)
+
+The plain-language walkthrough of these steps is in the
+[README](../README.md#how-it-works-in-simple-terms).
+
+## Technical flowchart
+
 ![Flowchart](figures/fig1_flowchart.png)
 
 ```mermaid

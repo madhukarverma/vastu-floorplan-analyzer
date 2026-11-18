@@ -77,7 +77,33 @@ for f in result.findings[:3]:
 print(to_markdown(result))
 ```
 
-## How it works
+## How it works, in simple terms
+
+<p align="center">
+  <img src="docs/figures/simple_flowchart.svg" width="560" alt="Simple flowchart: give a house map, trace rooms, check the drawing, find north, lay a 3x3 grid, see which box each room is in, check Vastu rules and sun heat, score out of 100, swap rooms if the score is low, then get a to-do list and report card">
+</p>
+
+Think of your house as a toy box where every toy has a favourite spot. The tool checks
+whether each room is in its favourite spot, gives the house a score, and tells you how to
+tidy up.
+
+1. **Trace every room.** Draw a line around each room on your map and name it.
+2. **Check the drawing.** Make sure nothing is missing or wrong.
+3. **Find north.** Turn the map so north points up, like setting a compass.
+4. **Put a 3×3 grid on top.** Like a tic-tac-toe board: each box is a direction
+   (north, north-east, east, ...) and the middle box is the centre.
+5. **See which box each room is in.** For example, "the kitchen is in the north-east box".
+6. **Two checkers look at the house.**
+   - *Vastu rules:* each room has a favourite spot (kitchen in the south-east, prayer room
+     in the north-east, parents' bedroom in the south-west).
+   - *Sun checker:* which walls get too hot in the afternoon and need shade.
+7. **Give a score.** All the points add up to a mark out of 100, like a school test.
+8. **Swap rooms if the score is low.** Try trading rooms (kitchen ↔ bedroom) and keep only
+   the swaps that raise the score.
+9. **Make a to-do list.** Biggest fixes first, each with the Vastu reason and the sun reason,
+   plus a coloured map (blue rooms are happy, red rooms are not).
+
+## How it works, in technical terms
 
 ```mermaid
 flowchart LR
