@@ -1,0 +1,23 @@
+{
+  "name": "Sample 3BHK house (as built)",
+  "width": 12,
+  "depth": 15,
+  "north": "up",
+  "rooms": [
+    {"name": "Living Room",    "type": "living",         "x": 0,  "y": 0,    "w": 6, "h": 5},
+    {"name": "Kitchen",        "type": "kitchen",        "x": 6,  "y": 0,    "w": 4, "h": 5},
+    {"name": "Toilet 1",       "type": "toilet",         "x": 10, "y": 0,    "w": 2, "h": 3},
+    {"name": "Utility",        "type": "utility",        "x": 10, "y": 3,    "w": 2, "h": 2},
+    {"name": "Bedroom 2",      "type": "bedroom",        "x": 0,  "y": 5,    "w": 4, "h": 5},
+    {"name": "Dining",         "type": "dining",         "x": 4,  "y": 5,    "w": 4, "h": 5},
+    {"name": "Staircase",      "type": "staircase",      "x": 8,  "y": 5,    "w": 4, "h": 3},
+    {"name": "Pooja",          "type": "pooja",          "x": 8,  "y": 8,    "w": 2, "h": 2},
+    {"name": "Store",          "type": "store",          "x": 10, "y": 8,    "w": 2, "h": 2},
+    {"name": "Master Bedroom", "type": "master_bedroom", "x": 0,  "y": 10,   "w": 5, "h": 5},
+    {"name": "Foyer",          "type": "foyer",          "x": 5,  "y": 10,   "w": 3, "h": 2.5},
+    {"name": "Toilet 2",       "type": "toilet",         "x": 5,  "y": 12.5, "w": 2, "h": 2.5},
+    {"name": "Porch",          "type": "corridor",       "x": 7,  "y": 12.5, "w": 1, "h": 2.5},
+    {"name": "Bedroom 3",      "type": "bedroom",        "x": 8,  "y": 10,   "w": 4, "h": 5}
+  ],
+  "door": {"x": 7.5, "y": 15}
+}

@@ -1,0 +1,130 @@
+"""STEP 1 and STEP 2 - describe the house, then check the drawing.
+
+We keep the house simple on purpose:
+
+* The house is a rectangle, ``width`` metres wide and ``depth`` metres deep.
+* Every room is a rectangle inside it.
+* Positions are measured like on a screen: ``x`` from the LEFT edge,
+  ``y`` from the TOP edge, both in metres.
+
+            x ->
+        +-----------------------+   y = 0 (top edge)
+     y  |  Living   | Kitchen   |
+     |  |-----------+-----------|
+     v  |  Bedroom  |  Toilet   |
+        +-----------------------+   y = depth (bottom edge)
+"""
+
+from __future__ import annotations
+
+import json
+from dataclasses import asdict, dataclass, field
+from pathlib import Path
+
+
+@dataclass
+class Room:
+    """One rectangular room."""
+
+    name: str  # what the owner calls it, e.g. "Kitchen"
+    type: str  # what it is used for, e.g. "kitchen" (see rules.py)
+    x: float  # left edge, metres from the left of the house
+    y: float  # top edge, metres from the top of the house
+    w: float  # width in metres
+    h: float  # height (depth) in metres
+
+    @property
+    def area(self) -> float:
+        return self.w * self.h
+
+
+@dataclass
+class Door:
+    """The main entrance, a point on the outer wall."""
+
+    x: float
+    y: float
+
+
+@dataclass
+class House:
+    """The whole house: its size, which way north is, the rooms and the door."""
+
+    name: str
+    width: float
+    depth: float
+    north: str = "up"  # where north points on the drawing: up / right / down / left
+    rooms: list[Room] = field(default_factory=list)
+    door: Door | None = None
+
+
+# ----------------------------------------------------------------------------
+# STEP 1 - read / write the house as a JSON file
+# ----------------------------------------------------------------------------
+
+
+def load_house(path: str | Path) -> House:
+    """Read a house from a JSON file (format: docs/input-format.md)."""
+    data = json.loads(Path(path).read_text(encoding="utf-8"))
+    rooms = [Room(**r) for r in data["rooms"]]
+    door = Door(**data["door"]) if data.get("door") else None
+    return House(
+        name=data.get("name", "My house"),
+        width=data["width"],
+        depth=data["depth"],
+        north=data.get("north", "up"),
+        rooms=rooms,
+        door=door,
+    )
+
+
+def save_house(house: House, path: str | Path) -> None:
+    """Write a house to a JSON file."""
+    Path(path).write_text(json.dumps(asdict(house), indent=2), encoding="utf-8")
+
+
+# ----------------------------------------------------------------------------
+# STEP 2 - check the drawing for obvious mistakes
+# ----------------------------------------------------------------------------
+
+
+def check_house(house: House) -> list[str]:
+    """Return a list of problems. An empty list means the drawing is fine."""
+    problems: list[str] = []
+
+    if house.north not in ("up", "right", "down", "left"):
+        problems.append("North must be 'up', 'right', 'down' or 'left'.")
+    if not house.rooms:
+        problems.append("Draw at least one room.")
+
+    for room in house.rooms:
+        inside = (
+            room.x >= 0 and room.y >= 0 and room.x + room.w <= house.width and room.y + room.h <= house.depth
+        )
+        if room.w <= 0 or room.h <= 0:
+            problems.append(f"'{room.name}' has no size.")
+        elif not inside:
+            problems.append(f"'{room.name}' sticks out of the house.")
+
+    # Two rooms must not sit on top of each other.
+    for i, a in enumerate(house.rooms):
+        for b in house.rooms[i + 1 :]:
+            if overlap_area(a.x, a.y, a.w, a.h, b.x, b.y, b.w, b.h) > 0.01:
+                problems.append(f"'{a.name}' and '{b.name}' overlap.")
+
+    return problems
+
+
+def overlap_area(
+    ax: float, ay: float, aw: float, ah: float, bx: float, by: float, bw: float, bh: float
+) -> float:
+    """Area shared by two rectangles (0 if they do not touch).
+
+    Overlap width  = (smaller right edge) - (bigger left edge)
+    Overlap height = (smaller bottom edge) - (bigger top edge)
+    """
+    overlap_w = min(ax + aw, bx + bw) - max(ax, bx)
+    overlap_h = min(ay + ah, by + bh) - max(ay, by)
+    if overlap_w <= 0 or overlap_h <= 0:
+        return 0.0
+    return overlap_w * overlap_h

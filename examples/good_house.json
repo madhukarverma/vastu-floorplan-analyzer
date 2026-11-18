@@ -1,0 +1,21 @@
+{
+  "name": "Well-planned 3BHK house",
+  "width": 12,
+  "depth": 15,
+  "north": "up",
+  "rooms": [
+    {"name": "Living Room",    "type": "living",         "x": 0,  "y": 0,    "w": 8, "h": 5},
+    {"name": "Pooja",          "type": "pooja",          "x": 8,  "y": 0,    "w": 2, "h": 3},
+    {"name": "Study",          "type": "study",          "x": 8,  "y": 3,    "w": 2, "h": 2},
+    {"name": "Verandah",       "type": "verandah",       "x": 10, "y": 0,    "w": 2, "h": 5},
+    {"name": "Bedroom 2",      "type": "bedroom",        "x": 0,  "y": 5,    "w": 4, "h": 5},
+    {"name": "Central Hall",   "type": "circulation",    "x": 4,  "y": 5,    "w": 4, "h": 5},
+    {"name": "Dining",         "type": "dining",         "x": 8,  "y": 5,    "w": 4, "h": 5},
+    {"name": "Master Bedroom", "type": "master_bedroom", "x": 0,  "y": 10,   "w": 4, "h": 5},
+    {"name": "Staircase",      "type": "staircase",      "x": 4,  "y": 10,   "w": 2, "h": 5},
+    {"name": "Store",          "type": "store",          "x": 6,  "y": 10,   "w": 2, "h": 2.5},
+    {"name": "Toilet",         "type": "toilet",         "x": 6,  "y": 12.5, "w": 2, "h": 2.5},
+    {"name": "Kitchen",        "type": "kitchen",        "x": 8,  "y": 10,   "w": 4, "h": 5}
+  ],
+  "door": {"x": 9, "y": 0}
+}

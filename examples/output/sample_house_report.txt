@@ -1,0 +1,71 @@
+VASTU REPORT CARD - Sample 3BHK house (as built)
+============================================================
+House size: 12 m x 15 m, north points up on the drawing
+
+STEP 5 - Which box is each room in?
+  Living Room      (living) -> mostly North-west  [NW 67%, N 33%]
+  Kitchen          (kitchen) -> mostly North  [N 50%, NE 50%]
+  Toilet 1         (toilet) -> mostly North-east  [NE 100%]
+  Utility          (utility) -> mostly North-east  [NE 100%]
+  Bedroom 2        (bedroom) -> mostly West  [W 100%]
+  Dining           (dining) -> mostly Centre  [C 100%]
+  Staircase        (staircase) -> mostly East  [E 100%]
+  Pooja            (pooja) -> mostly East  [E 100%]
+  Store            (store) -> mostly East  [E 100%]
+  Master Bedroom   (master_bedroom) -> mostly South-west  [SW 80%, S 20%]
+  Foyer            (circulation) -> mostly South  [S 100%]
+  Toilet 2         (toilet) -> mostly South  [S 100%]
+  Porch            (circulation) -> mostly South  [S 100%]
+  Bedroom 3        (bedroom) -> mostly South-east  [SE 100%]
+
+STEP 6a - Points for each room (out of 10)
+  Living Room      ########..  8.0/10  (counts x2)
+  Kitchen          ..........  0.0/10  (counts x3)
+  Toilet 1         ..........  0.0/10  (counts x3)
+  Utility          ..........  0.0/10  (counts x1)
+  Bedroom 2        ########## 10.0/10  (counts x2)
+  Dining           #####.....  5.0/10  (counts x1)
+  Staircase        ###.......  3.0/10  (counts x2)
+  Pooja            #######...  7.0/10  (counts x3)
+  Store            ###.......  3.0/10  (counts x1)
+  Master Bedroom   #########.  9.4/10  (counts x3)
+  Foyer            #####.....  5.0/10  (counts x1)
+  Toilet 2         #####.....  5.0/10  (counts x3)
+  Porch            #####.....  5.0/10  (counts x1)
+  Bedroom 3        ###.......  3.0/10  (counts x2)
+  Main door        in the South: 3/10
+  Open centre      10/10
+
+STEP 6b - Sun check (outside walls)
+  Living Room      outside walls face: N, W
+  Kitchen          outside walls face: N
+  Toilet 1         outside walls face: N, E
+  Utility          outside walls face: E
+  Bedroom 2        outside walls face: W
+  Staircase        outside walls face: E
+  Store            outside walls face: E
+  Master Bedroom   outside walls face: S, W
+  Toilet 2         outside walls face: S
+  Porch            outside walls face: S
+  Bedroom 3        outside walls face: E, S
+
+STEP 7 - VASTU SCORE: 48.2 / 100  (Needs work)
+
+STEP 8 - Swap game (change what a room is used for)
+  Swap 'Kitchen' <-> 'Bedroom 3'  -> score becomes 57.9
+  Swap 'Toilet 1' <-> 'Pooja'  -> score becomes 63.4
+  Swap 'Living Room' <-> 'Kitchen'  -> score becomes 67.2
+
+STEP 9 - To-do list (most important first)
+  1. Move 'Kitchen' (0.0/10, now in the North) towards the South-east. Why: South-east belongs to Agni (fire). Science: an east-side kitchen gets morning light. Tip: Put the stove in the south-east corner so the cook faces east.
+  2. Move 'Toilet 1' (0.0/10, now in the North-east) towards the North-west. Why: Waste goes to the north-west (Vayu, air). Never in the holy north-east or centre. Tip: Keep it dry, closed and fitted with an exhaust fan.
+  3. Main door is in the South (3/10). Best is North, North-east, East. Why: North, north-east and east doors let in the morning energy. Science: they open to the cooler, shaded side in the afternoon. Tip: If you cannot move the door, keep it bright and clean.
+  4. Move 'Toilet 2' (5.0/10, now in the South) towards the North-west. Why: Waste goes to the north-west (Vayu, air). Never in the holy north-east or centre. Tip: Keep it dry, closed and fitted with an exhaust fan.
+  5. Move 'Bedroom 3' (3.0/10, now in the South-east) towards the West, North-west. Why: Children's and guest rooms belong to the west and north-west. Tip: Place the bed with the head towards the south or east.
+  6. Move 'Utility' (0.0/10, now in the North-east) towards the North-west. Why: Washing (air and movement) belongs to the north-west. Tip: Drain water towards the north or east.
+  7. Move 'Store' (3.0/10, now in the East) towards the South-west. Why: Heavy storage makes the south-west strong. Tip: Keep the heaviest things on the south-west side.
+  8. Move 'Dining' (5.0/10, now in the Centre) towards the West. Why: Dining sits in the west, next to the kitchen. Tip: Keep the dining table close to the kitchen.
+  9. 'Living Room' has a west wall that reaches about 65.1 C in summer. Add shade outside (sunshade, plants) and use light paint.
+  10. 'Kitchen' gets no morning sun. An east window would help.
+  11. 'Bedroom 2' has a west wall that reaches about 65.1 C in summer. Add shade outside (sunshade, plants) and use light paint.
+  12. 'Master Bedroom' has a west wall that reaches about 65.1 C in summer. Add shade outside (sunshade, plants) and use light paint.
