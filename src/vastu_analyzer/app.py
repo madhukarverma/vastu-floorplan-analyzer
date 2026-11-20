@@ -106,11 +106,25 @@ class VastuApp:
         self.canvas.bind("<ButtonRelease-1>", self.on_release)
         self.canvas.bind("<Configure>", self.on_resize)
 
-        # ---- right: the controls ------------------------------------------------
-        panel = ttk.Frame(root)
-        panel.grid(row=0, column=1, sticky="nsew", padx=8, pady=8)
+        # ---- right: the controls, inside one scrollable column ----------------------
+        # Tkinter frames cannot scroll, but a Canvas can. So we put the whole panel (a Frame)
+        # inside a Canvas and connect a scrollbar to that Canvas.
+        holder = ttk.Frame(root)
+        holder.grid(row=0, column=1, sticky="nsew", padx=(8, 0), pady=8)
+        holder.rowconfigure(0, weight=1)
+        self.panel_canvas = tk.Canvas(
+            holder, highlightthickness=0, yscrollincrement=40
+        )  # 40 px per wheel step
+        panel_scroll = ttk.Scrollbar(holder, orient="vertical", command=self.panel_canvas.yview)
+        self.panel_canvas.configure(yscrollcommand=panel_scroll.set)
+        self.panel_canvas.grid(row=0, column=0, sticky="ns")
+        panel_scroll.grid(row=0, column=1, sticky="ns")
+        panel = ttk.Frame(self.panel_canvas, padding=(0, 0, 10, 0))
+        self.panel_canvas.create_window((0, 0), window=panel, anchor="nw")
+        # When the panel's contents change size, tell the canvas how far it can now scroll.
+        panel.bind("<Configure>", lambda _e: self.panel_canvas.configure(
+            scrollregion=self.panel_canvas.bbox("all"), width=panel.winfo_reqwidth()))  # fmt: skip
         panel.columnconfigure(0, weight=1)
-        panel.rowconfigure(20, weight=1)  # the report box takes the spare height
 
         ttk.Label(panel, text="Sample houses").grid(row=0, column=0, sticky="w")
         self.samples = self.find_samples()
@@ -217,7 +231,7 @@ class VastuApp:
         box.grid(row=20, column=0, sticky="nsew")
         box.rowconfigure(0, weight=1)
         box.columnconfigure(0, weight=1)
-        self.text = tk.Text(box, width=74, height=10, wrap="word", font=("Consolas", 10), bg="#fbfbfd",
+        self.text = tk.Text(box, width=74, height=28, wrap="word", font=("Consolas", 10), bg="#fbfbfd",
                             relief="flat", padx=8, pady=6, state="disabled")  # fmt: skip
         scroll = ttk.Scrollbar(box, command=self.text.yview)
         self.text.configure(yscrollcommand=scroll.set)
@@ -226,8 +240,25 @@ class VastuApp:
         self.setup_text_colours()
 
         self.bind_shortcuts()
+        self.bind_mouse_wheel()
         self.mode_changed()
         self.redraw()
+
+    # ---- mouse wheel ------------------------------------------------------------------
+    def bind_mouse_wheel(self) -> None:
+        # Stop the wheel from changing drop-down lists and number boxes by accident:
+        # over them, the wheel scrolls the panel instead.
+        for widget_class in ("TCombobox", "TSpinbox"):
+            self.root.unbind_class(widget_class, "<MouseWheel>")
+        self.root.bind_all("<MouseWheel>", self.on_mouse_wheel)
+
+    def on_mouse_wheel(self, event: tk.Event[tk.Misc]) -> None:
+        """Scroll the right panel when the mouse is over it (the report box scrolls itself)."""
+        widget = self.root.winfo_containing(event.x_root, event.y_root)
+        if widget is None or widget is self.text:
+            return
+        if str(widget).startswith(str(self.panel_canvas)):
+            self.panel_canvas.yview_scroll(-1 if event.delta > 0 else 1, "units")
 
     # ---- keyboard shortcuts --------------------------------------------------------
     def bind_shortcuts(self) -> None:
