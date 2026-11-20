@@ -4,6 +4,21 @@ All notable changes to this project are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.0] - 2026-11-20
+
+### Added
+
+- SELECT mode (Tab switches between EDIT and SELECT): click a room to select it and drag it to
+  move it. Dropping it on another room swaps the two rooms' places when both fit; otherwise it
+  snaps back with an explanation.
+- Keyboard shortcuts: Tab, Ctrl+Z (50-step undo), Ctrl+S, Ctrl+O, F5 / Ctrl+Enter, F11, Esc,
+  and Delete, R (rotate) and arrow keys (nudge) for the selected room.
+- "Add a room by size": type width and depth (optionally X and Y). The app finds a free spot
+  automatically, and a persistent red message explains when there is no space or a collision.
+- Collision detection on every draw, move, nudge, rotate and add (`collision`,
+  `find_free_spot` and `move_room` in `house.py`, with tests).
+- Coloured mode bar, status messages, "Update selected", "Delete selected" and "Shortcuts" buttons.
+
 ## [2.1.0] - 2026-11-18
 
 ### Added

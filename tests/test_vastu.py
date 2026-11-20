@@ -135,3 +135,46 @@ def test_samples_cover_every_grade_in_order() -> None:
     scores = [r.score for r in results]
     assert scores == sorted(scores)  # files are numbered from worst to best
     assert {r.grade for r in results} == {"Poor", "Needs work", "Good", "Excellent"}
+
+
+# Editing: collisions, free space, moving rooms -------------------------------------
+
+
+def two_room_house() -> House:
+    return House("edit", 9, 9, rooms=[Room("A", "kitchen", 0, 0, 3, 3), Room("B", "bedroom", 6, 6, 3, 3)])
+
+
+def test_collision_finds_overlaps_and_outside() -> None:
+    from vastu_analyzer.house import collision
+
+    house = two_room_house()
+    assert collision(house, house.rooms[0]) is None
+    assert "overlap 'A'" in (collision(house, Room("C", "store", 2, 2, 3, 3)) or "")
+    assert "stick out" in (collision(house, Room("C", "store", 8, 8, 3, 3)) or "")
+
+
+def test_find_free_spot() -> None:
+    from vastu_analyzer.house import find_free_spot
+
+    house = two_room_house()
+    assert find_free_spot(house, 3, 3) == (3.0, 0.0)  # first gap, scanning from the top-left
+    full = House("full", 6, 6, rooms=[Room("Big", "living", 0, 0, 6, 6)])
+    assert find_free_spot(full, 1, 1) is None
+
+
+def test_move_room_moves_swaps_or_refuses() -> None:
+    from vastu_analyzer.house import move_room
+
+    house = two_room_house()
+    a, b = house.rooms
+    assert move_room(house, a, 3, 0)[0]  # empty space: just moves
+    assert (a.x, a.y) == (3, 0)
+
+    ok, text = move_room(house, a, 6, 6)  # dropped on B: they swap places
+    assert ok
+    assert "Swapped" in text
+    assert (a.x, a.y, b.x, b.y) == (6, 6, 3, 0)
+
+    ok, text = move_room(house, a, 8, 8)  # would stick out: nothing changes
+    assert not ok
+    assert (a.x, a.y) == (6, 6)

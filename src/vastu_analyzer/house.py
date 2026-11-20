@@ -128,3 +128,79 @@ def overlap_area(
     if overlap_w <= 0 or overlap_h <= 0:
         return 0.0
     return overlap_w * overlap_h
+
+
+# ----------------------------------------------------------------------------
+# Editing helpers used by the window app: collisions, free space, moving rooms
+# ----------------------------------------------------------------------------
+
+
+def collision(house: House, room: Room) -> str | None:
+    """Why ``room`` cannot stay where it is, or ``None`` if it fits.
+
+    A room fits when it is inside the house and does not overlap any OTHER room.
+    """
+    inside = room.x >= 0 and room.y >= 0 and room.x + room.w <= house.width and room.y + room.h <= house.depth
+    if not inside:
+        return f"'{room.name}' would stick out of the house."
+    for other in house.rooms:
+        if other is room:
+            continue
+        if overlap_area(room.x, room.y, room.w, room.h, other.x, other.y, other.w, other.h) > 0.01:
+            return f"'{room.name}' would overlap '{other.name}'."
+    return None
+
+
+def find_free_spot(house: House, w: float, h: float, step: float = 0.5) -> tuple[float, float] | None:
+    """Top-left corner of the first empty space big enough for a w x h room.
+
+    We simply try every position, row by row from the top-left, in half-metre steps.
+    Returns ``None`` when there is no space anywhere.
+    """
+    test = Room("new room", "other", 0, 0, w, h)
+    y = 0.0
+    while y + h <= house.depth:
+        x = 0.0
+        while x + w <= house.width:
+            test.x, test.y = x, y
+            if collision(house, test) is None:
+                return x, y
+            x += step
+        y += step
+    return None
+
+
+def move_room(house: House, room: Room, x: float, y: float) -> tuple[bool, str]:
+    """Move ``room`` so its top-left corner is at (x, y).
+
+    * Dropped on empty space          -> the room just moves.
+    * Dropped on top of ONE other room -> the two rooms swap places
+                                          (if both still fit after swapping).
+    * Anything else                   -> nothing changes and we explain why.
+
+    Returns (it worked?, a message for the user).
+    """
+    old_x, old_y = room.x, room.y
+    room.x, room.y = x, y
+    if collision(house, room) is None:
+        return True, f"Moved '{room.name}'."
+
+    hits = [o for o in house.rooms if o is not room
+            and overlap_area(room.x, room.y, room.w, room.h, o.x, o.y, o.w, o.h) > 0.01]  # fmt: skip
+    if len(hits) == 1:
+        other = hits[0]
+        other_x, other_y = other.x, other.y
+        room.x, room.y = other_x, other_y  # room takes the other room's place ...
+        other.x, other.y = old_x, old_y  # ... and the other room takes the old place
+        if collision(house, room) is None and collision(house, other) is None:
+            return True, f"Swapped '{room.name}' and '{other.name}'."
+        other.x, other.y = other_x, other_y  # did not fit: undo the swap
+
+    room.x, room.y = old_x, old_y  # put it back where it was
+    if not hits:
+        reason = "it would stick out of the house."
+    elif len(hits) == 1:
+        reason = f"'{room.name}' and '{hits[0].name}' do not fit in each other's place."
+    else:
+        reason = f"it would overlap {len(hits)} rooms."
+    return False, f"Cannot move '{room.name}' there: {reason}"

@@ -40,6 +40,38 @@ In the window:
 5. Press **F11** (or the *Full screen* button) for full screen, which is ideal on a projector.
    **Esc** leaves full screen. The drawing grows to fill the screen.
 
+### Editing the house
+
+The app has two main modes. **Press Tab to switch** between them (a coloured bar shows the
+current mode).
+
+| Mode | What the mouse does |
+|---|---|
+| **EDIT** (blue) | Click-and-drag on empty space to draw a new room |
+| **SELECT** (purple) | Click a room to select it, then drag it somewhere else. Drop it on empty space to **move** it, or on another room and the two **swap places**. If it would not fit, it snaps back and a red message explains why. |
+| **DOOR** (brown) | Click an outside wall to place the main door |
+
+**Add a room by size:** type its width and depth (and optionally X and Y) and click
+**Add room**. With X and Y blank, the app finds the first free space by itself. If the room
+does not fit anywhere, or overlaps another room, a red message stays on screen until you
+change the numbers.
+
+### Keyboard shortcuts
+
+| Key | Action |
+|---|---|
+| **Tab** | Switch between EDIT and SELECT mode |
+| **Ctrl+Z** | Undo (up to 50 steps) |
+| **Ctrl+S** / **Ctrl+O** | Save / open a house file |
+| **F5** or **Ctrl+Enter** | Analyse |
+| **F11** / **Esc** | Full screen on/off / deselect and leave full screen |
+| **Delete** | Remove the selected room |
+| **R** | Rotate the selected room (swap width and depth) |
+| **Arrow keys** | Nudge the selected room by half a metre |
+
+A room never ends up overlapping another or sticking out of the house: every draw, move,
+nudge, rotate and add is checked first.
+
 Prefer the terminal? Run:
 
 ```bash
@@ -106,14 +138,14 @@ Full reports are in [`examples/output/`](examples/output).
 
 ```
 src/vastu_analyzer/
-  house.py        STEP 1-2  rooms, door, load/save, check the drawing
+  house.py        STEP 1-2  rooms, door, load/save, check the drawing, collisions, moving
   compass.py      STEP 3-5  north, 3x3 grid, which box each room is in
   rules.py        STEP 6a   the Vastu rule book (easy to edit)
   sun.py          STEP 6b   hot-wall check
   scoring.py      STEP 7    points and the score out of 100
   suggestions.py  STEP 8-9  swap game and to-do list
   report.py                 the printed report card
-  app.py                    the window app (Tkinter)
+  app.py                    the window app (Tkinter): draw, select, drag, shortcuts
   cli.py                    `vastu app` and `vastu analyze`
 tests/test_vastu.py         small tests: one per step, plus every sample house
 examples/                   7 sample houses (worst to best) + their reports

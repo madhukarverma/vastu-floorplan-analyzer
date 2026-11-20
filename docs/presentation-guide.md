@@ -34,7 +34,12 @@
    Direction is everything in Vastu."*
 5. Click **Clear**, draw a kitchen in the bottom-right corner, then **ANALYSE**.
    *"Kitchen in the south-east: green, 10 out of 10."*
-6. Optional, to show the range: pick **1. Worst-case house** (17.6, red banner), then
+6. Show the editing: pick sample **2** again, press **Tab** (the bar turns purple, SELECT
+   mode), and drag the red **Kitchen** onto **Bedroom 3**. They swap places. Press **F5**:
+   the kitchen is now green in the south-east. Press **Ctrl+Z** to undo.
+   *"Rooms can be moved and swapped with the mouse, and the program never lets two rooms
+   overlap."*
+7. Optional, to show the range: pick **1. Worst-case house** (17.6, red banner), then
    **6. Courtyard villa** (90.0). The open courtyard in the middle is the Brahmasthan.
 
 > Tip: practise once on the computer you will present from. If `vastu` is not found, use
@@ -50,4 +55,5 @@
 | Is Vastu scientific? | Some rules match physics (sun and heat), as our sun check shows. Others are cultural; the tool reports both honestly. |
 | What if my house faces another way? | Set "North points". The grid labels turn, and the score changes. |
 | How do you know the code is correct? | 12 automated tests, one per step (e.g. "a kitchen in the SE gets 10 points"), run on every change by GitHub Actions. |
+| What if I drag a room onto another room? | If both fit in each other's place, they swap. Otherwise the room snaps back and a red message says why (collision detection: overlap = shared width × shared depth > 0). |
 | Can I change the rules? | Yes. Edit `rules.py`; no other code changes are needed. |

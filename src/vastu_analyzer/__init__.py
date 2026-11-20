@@ -14,7 +14,7 @@ The code follows the 9 steps of the flowchart (docs/figures/simple_flowchart.svg
 
 from __future__ import annotations
 
-__version__ = "2.1.0"
+__version__ = "2.2.0"
 
 from .house import Door, House, Room, check_house, load_house, save_house
 from .report import report

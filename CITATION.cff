@@ -4,8 +4,8 @@ title: "vastu-floorplan-analyzer: a simple Vastu Shastra checker for house maps"
 type: software
 authors:
   - name: "vastu-floorplan-analyzer contributors"
-version: 2.1.0
-date-released: 2026-11-18
+version: 2.2.0
+date-released: 2026-11-20
 license: MIT
 repository-code: "https://github.com/madhukarverma/vastu-floorplan-analyzer"
 keywords:
